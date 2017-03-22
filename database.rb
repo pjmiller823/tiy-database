@@ -1,5 +1,3 @@
-# Track name, phone number, address, position, salary, slack account, github account
-# - Class with attr reader and methods for all of the different variables.
 class People
   attr_reader "name", "phone_number", "address", "position", "salary", "slack_account", "github_account"
 
@@ -72,12 +70,20 @@ class Database
       puts "That person does not exist. Would you like to add them?"
     end
   end
-end
 
-def deleting_people
-  puts "Who would you like to delete?"
-  delete = gets.chomp
+  def deleting_people
+    found = false
+    puts "Who would you like to delete?"
+    delete = gets.chomp
 
+    @personnel.each do |person|
+      if person.name == delete
+        person.name.delete(person)
+        puts "Thank you for deleting!"
+        found == true
+      end
+    end
+  end
 end
 
 database = Database.new
@@ -102,8 +108,3 @@ loop do
     database.deleting_people
   end
 end
-
-
-# -Create array that holds all pertinant information and is searchable.
-# reactive serach
-# - interracts with the attr reader and puts desired information.
