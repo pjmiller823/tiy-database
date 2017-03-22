@@ -4,7 +4,26 @@ puts "Welcome to The Iron Yard employee database! Press 'A' to add a, 'S' to sea
 user_input = gets.chomp
 
 if user_input == "A"
+  puts "What is the person's name?"
+  name = gets.chomp
 
+  puts "What is #{name}'s phone number?"
+  phone_number = gets.chomp
+
+  puts "What is #{name}'s address?"
+  address = gets.chomp
+
+  puts "What is #{name}'s position in the company?"
+  position = gets.chomp
+
+  puts "What is #{name}'s salary?"
+  salary = gets.chomp
+
+  puts "What is #{name}'s slack account?"
+  slack_account = gets.chomp
+
+  puts "What is #{name}'s github account?"
+  github_account = gets.chomp
 end
 
 if user_input == "S"
@@ -17,6 +36,8 @@ end
 # Track name, phone number, address, position, salary, slack account, github account
 # - Class with attr reader and methods for all of the different variables.
 class Database
+  attr_reader "name", "phone_number", "address", "position", "salary", "slack_account", "github_account"
+
   def initialize(name, phone_number, address, position, salary, slack_account, github_account)
     @name = name
     @phone_number = phone_number
@@ -25,7 +46,7 @@ class Database
     @salary = salary
     @slack_account = slack_account
     @github_account = github_account
-  end  
+  end
 end
 
 # -Create array that holds all pertinant information and is searchable.
