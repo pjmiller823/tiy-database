@@ -73,15 +73,20 @@ class Database
 
   def deleting_people
     found = false
+    index = 0
     puts "Who would you like to delete?"
     delete = gets.chomp
 
     @personnel.each do |person|
       if person.name == delete
-        person.name.delete(person)
+        found = true
+        @personnel.slice!(index)
         puts "Thank you for deleting!"
-        found == true
       end
+      index += 1
+    end
+    if found == false
+      puts "That person doesn't exist. Would you like to add them?"
     end
   end
 end
