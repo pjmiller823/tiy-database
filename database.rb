@@ -57,10 +57,18 @@ class Database
     end
 
   end
+
+  def searching_people
+    puts "Who would you like to search for?"
+    search = gets.chomp
+
+    @personnel.each do |person|
+      person.name == search
+      puts "You searched for #{person.name}, their phone number is #{person.phone_number}. Their address is #{person.address}. They are the/a #{person.position}. They make #{person.salary}. They can be found on the internet at #{@slack_account} and #{@github_account}. Now please try not to misuse that information"
+    end
+  end
 end
 
-# ***Create a menu with add, search, and delete a person
-# ***- Welcome the user ans ask them if they would like to search, add, or delete a person.
 database = Database.new
 
 loop do
@@ -72,21 +80,14 @@ loop do
   end
 
   if user_input == "S"
-    # asks for the person's name
-    puts "Who would you like to search for?"
-    search = gets.chomp
-    # if statement with exact name show all info.
-    if personnel.includes?(search)
-      puts "You searched for #{@name}, their phone number is #{@phone_number}. Their address is #{@address}. They are the/a #{@position}. They make #{@salary}. They can be found on the internet at #{@slack_account} and #{@github_account}. Now please try not to misuse that information"
-    # if not put that person doesn't exist. Would you like to add?
-    else
-      puts "That person does not exist in our system. Maybe you should think about adding them?"
-    end
+    database.searching_people
   end
+# puts "You searched for #{@name}, their phone number is #{@phone_number}. Their address is #{@address}. They are the/a #{@position}. They make #{@salary}. They can be found on the internet at #{@slack_account} and #{@github_account}. Now please try not to misuse that information"
+# if not put that person doesn't exist. Would you like to add?
+end
 
-  if user_input == "D"
+if user_input == "D"
 
-  end
 end
 
 # -Create array that holds all pertinant information and is searchable.
