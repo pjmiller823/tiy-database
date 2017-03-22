@@ -52,8 +52,6 @@ class Database
 
       @personnel << person
 
-      puts "#{@personnel}"
-
     end
 
   end
@@ -76,11 +74,21 @@ class Database
   end
 end
 
+def deleting_people
+  puts "Who would you like to delete?"
+  delete = gets.chomp
+
+end
+
 database = Database.new
 
 loop do
-  puts "Welcome to The Iron Yard employee database! Press 'A' to add a, 'S' to search for a person, and 'D' to delete someone. Have fun!"
+  puts "Welcome to The Iron Yard employee database! Press 'A' to add a, 'S' to search for a person, and 'D' to delete someone. Have fun! (if you want to leave just press enter.)"
   user_input = gets.chomp.upcase
+
+  if user_input.empty?
+    break
+  end
 
   if user_input == "A"
     database.adding_people
@@ -89,13 +97,12 @@ loop do
   if user_input == "S"
     database.searching_people
   end
-# puts "You searched for #{@name}, their phone number is #{@phone_number}. Their address is #{@address}. They are the/a #{@position}. They make #{@salary}. They can be found on the internet at #{@slack_account} and #{@github_account}. Now please try not to misuse that information"
-# if not put that person doesn't exist. Would you like to add?
+
+  if user_input == "D"
+    database.deleting_people
+  end
 end
 
-if user_input == "D"
-
-end
 
 # -Create array that holds all pertinant information and is searchable.
 # reactive serach
