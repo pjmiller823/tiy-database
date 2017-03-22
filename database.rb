@@ -59,12 +59,19 @@ class Database
   end
 
   def searching_people
+    found = false
     puts "Who would you like to search for?"
     search = gets.chomp
 
     @personnel.each do |person|
-      person.name == search
-      puts "You searched for #{person.name}, their phone number is #{person.phone_number}. Their address is #{person.address}. They are the/a #{person.position}. They make #{person.salary}. They can be found on the internet at #{@slack_account} and #{@github_account}. Now please try not to misuse that information"
+      if person.name == search
+        puts "You searched for #{person.name}, their phone number is #{person.phone_number}. Their address is #{person.address}. They are the/a #{person.position}. They make #{person.salary}. They can be found on the internet at #{@slack_account} and #{@github_account}. Now please try not to misuse that information"
+        found = true
+        break
+      end
+    end
+    if found == false
+      puts "That person does not exist. Would you like to add them?"
     end
   end
 end
@@ -73,7 +80,7 @@ database = Database.new
 
 loop do
   puts "Welcome to The Iron Yard employee database! Press 'A' to add a, 'S' to search for a person, and 'D' to delete someone. Have fun!"
-  user_input = gets.chomp
+  user_input = gets.chomp.upcase
 
   if user_input == "A"
     database.adding_people
